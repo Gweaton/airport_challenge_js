@@ -42,5 +42,9 @@ describe('Airport', function(){
       airport.takeOffPlane(plane);
       expect(airport._planes).not.toContain(plane);
     });
+    it('should not be able to take off if stormy', function() {
+      airport.weather.isStormy = true;
+      expect(function() {airport.takeOffPlane(plane)}).toThrow(new Error("Plane cannot take off during a storm"));
+    })
   });
 });

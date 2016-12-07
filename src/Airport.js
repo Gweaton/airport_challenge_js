@@ -13,6 +13,10 @@ Airport.prototype.landPlane = function(plane) {
 };
 
 Airport.prototype.takeOffPlane = function(plane) {
-  plane.takeOff();
-  this._planes.pop(plane);
+  if (this.weather.isStormy === true) {
+    throw new Error("Plane cannot take off during a storm");
+  } else {
+    plane.takeOff();
+    this._planes.pop(plane);
+  }
 };
